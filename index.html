@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="main.css" rel="stylesheet" type="text/css">
+		<title>Help Hub</title>
+	</head>
+	<body>
+		<nav id="menu">
+			<h2>Emergency Services</h2>
+			<form>
+				<h3>Enter Your Location</h3>
+				<ul>
+					<li><input type="text" id="location" name="location" placeholder="1188 S Livermore Ave, Livermore, CA 94550"></li>
+					<h3>Select Services</h3>
+					<li><input type="checkbox" id="police" name="police" value="Police">Police Department</input></li>
+					<li><input type="checkbox" id="fire" name="fire" value="Fire">Fire Department</input></li>
+					<li><input type="checkbox" id="hospital" name="hospital" value="Hospital">Hospital</input></li>
+					<li><input type="checkbox" id="urgent-care" name="urgent-care" value="urgent-care">Urgent Care</input></li>
+					<li><input type="checkbox" id="mental" name="mental" value="mental">Mental Health</input></li>
+					<li><input type="checkbox" id="veterinary" name="veterinary" value="veterinary">Veterinary</input></li>
+				</ul>
+				<input type="button" value="Go!" id="go">
+			</form>
+		</nav>
+		<main>
+			<img src="images/hamburger.png" id="hamburger" width="35px" height="35px">
+			<header>
+				<h1>Help Hub</h1>
+			</header>
+		</main>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="app.js"></script>
+	<script src="nav.js"></script>
+</body>
+</html>

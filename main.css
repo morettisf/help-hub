@@ -1,0 +1,79 @@
+html, body {
+	height: 100%;
+	font-family: helvetica;
+	font-size: 1em;
+	background-color: lightblue;
+}
+
+body {
+	margin: 0;
+}
+
+nav {
+	width: 90%; 
+	height: 100%;
+	background-color: white;
+	position: absolute;
+	z-index: 1;
+	overflow: auto;
+}
+
+.nav-closed {
+	margin-left: -90%;
+}
+
+nav, .nav-closed, #hamburger {
+	transition-property: margin-left;
+	transition-duration: 1.5s;
+	transition-timing-function: ease-in-out;
+}
+
+nav h2 {
+	font-size: 3.5em;
+}
+
+nav h3 {
+	font-size: 2.5em;
+}
+
+nav form ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+select, input {
+	font-size: 2em;
+}
+
+#go {
+	font-size: 4em;
+	border: solid black 1px;
+	padding: 10px 50px;
+	margin-top: 40px;
+}
+
+h1 {
+	text-align: center;
+}
+
+h2 {
+	margin-left: 5%;
+}
+
+form {
+	margin-left: 5%;
+}
+
+#hamburger {
+	margin-left: 90%;
+}
+
+.hamburger-closed {
+	margin-left: 0% !important;
+}
+
+main {
+	height: 100%;
+	overflow: hidden;
+}
+
