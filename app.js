@@ -1,3 +1,4 @@
+// *** FUNCTION GROUP #1 ***
 var lat
 var lng
 
@@ -25,6 +26,8 @@ function showResult(res) {
     initMap()
 }
 
+// *** FUNCTION GROUP #2 ***
+
 // pass lat & lng into creating a map and displaying places
 var map
 var service
@@ -38,15 +41,19 @@ function initMap() {
 		center: city,
 		zoom: 12
 	})
-	// set query for markers
+	// set request parameters for markers
 	var request = {
 		location: city,
-    	radius: '500',
-    	query: 'fire department'
+    	radius: 7500,
+		keyword: "'fire station'"
 	} 
 
+	// create map and run nearby search for request
 	service = new google.maps.places.PlacesService(map)
-	service.textSearch(request, callback)
+	service.nearbySearch(request, callback)
+
+	// create infowindows for markers
+	infowindow = new google.maps.InfoWindow()
 }
 
 function callback(results, status) {
@@ -59,8 +66,16 @@ function callback(results, status) {
 }
 
 function createMarker(place) {
-    new google.maps.Marker({
+    var marker = new google.maps.Marker({
         position: place.geometry.location,
-        map: map
+        map: map,
+        icon: 'images/fire.jpg'
     });
+
+    // create event listener for displayig place details
+    google.maps.event.addListener(marker, 'click', function() {
+    	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    	place.formatted_address + '</div>')
+    	infowindow.open(map, this)
+    })
 }
