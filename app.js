@@ -4,7 +4,6 @@ var lng
 var policeChecked
 var fireChecked
 var hospitalChecked
-var urgentChecked
 var mentalChecked
 var vetChecked
 
@@ -16,7 +15,6 @@ document.getElementById('go').addEventListener('click', function() {
 	policeChecked = document.getElementById('police').checked
 	fireChecked = document.getElementById('fire').checked
 	hospitalChecked = document.getElementById('hospital').checked
-	urgentChecked = document.getElementById('urgent-care').checked
 	mentalChecked = document.getElementById('mental').checked
 	vetChecked = document.getElementById('veterinary').checked
 	console.log(vetChecked)
@@ -49,9 +47,8 @@ var map
 var service // POLICE
 var service2 // FIRE
 var service3 // HOSPITAL
-var service4 // URGENT CARE
-var service5 // MENTAL HEALTH
-var service6 // VETERINARY
+var service4 // MENTAL CRISIS
+var service5 // VETERINARY
 var infowindow
 
 function initMap() {
@@ -85,7 +82,7 @@ function initMap() {
 
 		// FIRE - run nearby search for request
 		service2 = new google.maps.places.PlacesService(map)
-		service2.nearbySearch(request2, callback)
+		service2.nearbySearch(request2, callback2)
 	}
 
 	// HOSPITAL - set request parameters for markers
@@ -98,53 +95,40 @@ function initMap() {
 
 		// HOSPITAL - run nearby search for request
 		service3 = new google.maps.places.PlacesService(map)
-		service3.nearbySearch(request3, callback)
+		service3.nearbySearch(request3, callback3)
 	}
 
-	// URGENT CARE - set request parameters for markers
-	if (urgentChecked === true) {
+	// MENTAL CRISIS - set request parameters for markers
+	if (mentalChecked === true) {
 		var request4 = {
 			location: city,
 	    	radius: 7500,
-			keyword: "'urgent care'"
+			keyword: "'mental crisis'"
 		} 
 
-		// URGENT CARE - run nearby search for request
+		// MENTAL CRISIS - run nearby search for request
 		service4 = new google.maps.places.PlacesService(map)
-		service4.nearbySearch(request4, callback)
-	}
-
-	// MENTAL HEALTH - set request parameters for markers
-	if (mentalChecked === true) {
-		var request5 = {
-			location: city,
-	    	radius: 7500,
-			keyword: "'mental health'"
-		} 
-
-		// MENTAL HEALTH - run nearby search for request
-		service5 = new google.maps.places.PlacesService(map)
-		service5.nearbySearch(request5, callback)
+		service4.nearbySearch(request4, callback4)
 	}
 
 	// VETERINARY - set request parameters for markers
 	if (vetChecked === true) {
-		var request6 = {
+		var request5 = {
 			location: city,
 	    	radius: 7500,
 			keyword: "'veterinary'"
 		} 
 
 		// VETERINARY - run nearby search for request
-		service6 = new google.maps.places.PlacesService(map)
-		service6.nearbySearch(request6, callback)
+		service5 = new google.maps.places.PlacesService(map)
+		service5.nearbySearch(request5, callback5)
 	}
 
 	// create infowindows for markers
 	infowindow = new google.maps.InfoWindow()
 }
 
-// retrieve results
+// POLICE - retrieve results
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
@@ -154,7 +138,7 @@ function callback(results, status) {
   }
 }
 
-// create markers from results
+// POLICE - create markers from results
 function createMarker(place) {
     var marker = new google.maps.Marker({
         position: place.geometry.location,
@@ -162,7 +146,115 @@ function createMarker(place) {
         icon: "images/police.png"
     })
 
-console.log(place)
+	console.log(place)
+    // create event listener for displaying place details
+    google.maps.event.addListener(marker, 'click', function() {
+    	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    	place.vicinity + '</div>')
+    	infowindow.open(map, this)
+    })
+}
+
+// FIRE - retrieve results
+function callback2(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      var place = results[i]
+      createMarker2(results[i])
+    }
+  }
+}
+
+// FIRE - create markers from results
+function createMarker2(place) {
+    var marker = new google.maps.Marker({
+        position: place.geometry.location,
+        map: map,
+        icon: "images/fire.png"
+    })
+
+	console.log(place)
+    // create event listener for displaying place details
+    google.maps.event.addListener(marker, 'click', function() {
+    	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    	place.vicinity + '</div>')
+    	infowindow.open(map, this)
+    })
+}
+
+// HOSPITAL - retrieve results
+function callback3(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      var place = results[i]
+      createMarker3(results[i])
+    }
+  }
+}
+
+// HOSPITAL - create markers from results
+function createMarker3(place) {
+    var marker = new google.maps.Marker({
+        position: place.geometry.location,
+        map: map,
+        icon: "images/hospital.png"
+    })
+
+	console.log(place)
+    // create event listener for displaying place details
+    google.maps.event.addListener(marker, 'click', function() {
+    	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    	place.vicinity + '</div>')
+    	infowindow.open(map, this)
+    })
+}
+
+// MENTAL CRISIS - retrieve results
+function callback4(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      var place = results[i]
+      createMarker4(results[i])
+    }
+  }
+}
+
+// MENTAL CRISIS - create markers from results
+function createMarker4(place) {
+    var marker = new google.maps.Marker({
+        position: place.geometry.location,
+        map: map,
+        icon: "images/mental.png"
+    })
+
+	console.log(place)
+    // create event listener for displaying place details
+    google.maps.event.addListener(marker, 'click', function() {
+    	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    	place.vicinity + '</div>')
+    	infowindow.open(map, this)
+    })
+}
+
+// VETERINARY - retrieve results
+function callback5(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      var place = results[i]
+      createMarker5(results[i])
+    }
+  }
+}
+
+// VETERINARY - create markers from results
+function createMarker5(place) {
+    var marker = new google.maps.Marker({
+        position: place.geometry.location,
+        map: map,
+        icon: "images/vet.png"
+    })
+
+	console.log(place)
     // create event listener for displaying place details
     google.maps.event.addListener(marker, 'click', function() {
     	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
