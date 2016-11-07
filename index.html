@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
 		<link href="main.css" rel="stylesheet" type="text/css">
 		<title>Help Hub</title>
 	</head>
@@ -10,7 +11,7 @@
 			<form>
 				<h3>Enter Your Location</h3>
 				<ul>
-					<li><input type="text" id="location" name="location" placeholder="1188 S Livermore Ave, Livermore, CA 94550"></li>
+					<li><input type="text" id="address" name="address" placeholder="1188 S Livermore Ave, Livermore, CA 94550"></li>
 					<h3>Select Services</h3>
 					<li><input type="checkbox" id="police" name="police" value="Police">Police Department</input></li>
 					<li><input type="checkbox" id="fire" name="fire" value="Fire">Fire Department</input></li>
@@ -22,14 +23,19 @@
 				<input type="button" value="Go!" id="go">
 			</form>
 		</nav>
+		<header>
+			<h1>Help Hub</h1>
+		</header>
 		<main>
-			<img src="images/hamburger.png" id="hamburger" width="35px" height="35px">
-			<header>
-				<h1>Help Hub</h1>
-			</header>
+		<img src="images/hamburger.png" id="hamburger" width="35px" height="35px">
+		<div id="map"></div>
 		</main>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="app.js"></script>
 	<script src="nav.js"></script>
+<!--	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrj6qlelZdeWQMNSuuwEEa2nE3V1sVma4&libraries=places&callback=initMap"
+    async defer></script> -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrj6qlelZdeWQMNSuuwEEa2nE3V1sVma4&libraries=places"
+    async defer></script>
 </body>
 </html>
