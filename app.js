@@ -71,12 +71,12 @@ function initMap() {
 			location: city,
     		radius: 7500,
 			keyword: "'police station'"
-		} 
+	   } 
 
 	// POLICE - run nearby search for request
 	service = new google.maps.places.PlacesService(map)
 	service.nearbySearch(request, callback)
-}
+    }
 
 	// FIRE - set request parameters for markers
 	if (fireChecked === true) {
@@ -133,6 +133,7 @@ function initMap() {
 	// create infowindows for markers
 	infowindow = new google.maps.InfoWindow()
 }
+
 
 
 
