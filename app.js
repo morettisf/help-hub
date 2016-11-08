@@ -17,7 +17,6 @@ document.getElementById('go').addEventListener('click', function() {
 	hospitalChecked = document.getElementById('hospital').checked
 	mentalChecked = document.getElementById('mental').checked
 	vetChecked = document.getElementById('veterinary').checked
-	console.log(vetChecked)
 })
 
 
@@ -34,7 +33,6 @@ function getLatitudeLongitude(address) {
 
 // capture the lattitude & logitude from res object
 function showResult(res) {
-	console.log(res)
     lat = (res.geometry.location.lat())
     lng = (res.geometry.location.lng())
     initMap()
@@ -146,12 +144,30 @@ function createMarker(place) {
         icon: "images/police.png"
     })
 
-	console.log(place)
     // create event listener for displaying place details
-    google.maps.event.addListener(marker, 'click', function() {
-    	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    	place.vicinity + '</div>')
-    	infowindow.open(map, this)
+    marker.addListener('click', function() {
+
+    	var info = {
+    		reference: place.reference
+    	}
+
+    	// get place details
+    	service.getDetails(info, function(details, status) {
+    		// if no website in object, change undefined to text below
+    		if (details.website === undefined) {
+    			details.website = 'No website available'
+    		}
+    		// populate place detail in pop up window
+    		console.log(details)
+			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    		details.formatted_address + '<br>' +
+    		details.formatted_phone_number + '<br>' +
+    		details.website + '</div>') // if this exists, show it?
+    		infowindow.open(map, marker)
+    	})
+
+
+    	
     })
 }
 
@@ -173,7 +189,6 @@ function createMarker2(place) {
         icon: "images/fire.png"
     })
 
-	console.log(place)
     // create event listener for displaying place details
     google.maps.event.addListener(marker, 'click', function() {
     	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
@@ -200,7 +215,6 @@ function createMarker3(place) {
         icon: "images/hospital.png"
     })
 
-	console.log(place)
     // create event listener for displaying place details
     google.maps.event.addListener(marker, 'click', function() {
     	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
@@ -227,7 +241,6 @@ function createMarker4(place) {
         icon: "images/mental.png"
     })
 
-	console.log(place)
     // create event listener for displaying place details
     google.maps.event.addListener(marker, 'click', function() {
     	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
@@ -254,7 +267,6 @@ function createMarker5(place) {
         icon: "images/vet.png"
     })
 
-	console.log(place)
     // create event listener for displaying place details
     google.maps.event.addListener(marker, 'click', function() {
     	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
