@@ -89,9 +89,3 @@ main {
 #map {
 	height: 100%;
 }
-
-.noLink {
-	pointer-events: none;
-	cursor: default;
-}
-

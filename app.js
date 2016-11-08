@@ -1,4 +1,5 @@
 // *** FUNCTION GROUP #1 ***
+
 var lat
 var lng
 var policeChecked
@@ -7,19 +8,18 @@ var hospitalChecked
 var mentalChecked
 var vetChecked
 
-
 // event listener for capturing address and what's checked
 document.getElementById('go').addEventListener('click', function() {
+
     var address = document.getElementById('address').value
     getLatitudeLongitude(address)
+
 	policeChecked = document.getElementById('police').checked
 	fireChecked = document.getElementById('fire').checked
 	hospitalChecked = document.getElementById('hospital').checked
 	mentalChecked = document.getElementById('mental').checked
 	vetChecked = document.getElementById('veterinary').checked
 })
-
-
 
 // initialize the Geocoder
 function getLatitudeLongitude(address) {   
@@ -37,6 +37,9 @@ function showResult(res) {
     lng = (res.geometry.location.lng())
     initMap()
 }
+
+
+
 
 // *** FUNCTION GROUP #2 ***
 
@@ -57,6 +60,11 @@ function initMap() {
 		center: city,
 		zoom: 12
 	})
+
+	// add traffic layer
+	var trafficLayer = new google.maps.TrafficLayer()
+	trafficLayer.setMap(map)
+
 	// POLICE - set request parameters for markers
 	if (policeChecked === true) {
 		var request = {
@@ -65,10 +73,10 @@ function initMap() {
 			keyword: "'police station'"
 		} 
 
-		// POLICE - run nearby search for request
-		service = new google.maps.places.PlacesService(map)
-		service.nearbySearch(request, callback)
-	}
+	// POLICE - run nearby search for request
+	service = new google.maps.places.PlacesService(map)
+	service.nearbySearch(request, callback)
+}
 
 	// FIRE - set request parameters for markers
 	if (fireChecked === true) {
@@ -125,6 +133,10 @@ function initMap() {
 	// create infowindows for markers
 	infowindow = new google.maps.InfoWindow()
 }
+
+
+
+// *** FUNCTION GROUP #3 ***
 
 // POLICE - retrieve results
 function callback(results, status) {
