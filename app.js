@@ -156,17 +156,22 @@ function createMarker(place) {
     		// if no website in object, change undefined to text below
     		if (details.website === undefined) {
     			details.website = 'No website available'
+    			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    			place.vicinity + '<br>' +
+    			details.formatted_phone_number + '<br>' +
+    			details.website + '</div>')
+    			infowindow.open(map, marker)
     		}
-    		// populate place detail in pop up window
-    		console.log(details)
-			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    		details.formatted_address + '<br>' +
-    		details.formatted_phone_number + '<br>' +
-    		details.website + '</div>') // if this exists, show it?
-    		infowindow.open(map, marker)
+
+    		else {
+    			// populate place detail in pop up window			
+				infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    			place.vicinity + '<br>' +
+    			details.formatted_phone_number + '<br>' +
+    			"<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
+    			infowindow.open(map, marker)
+    		}
     	})
-
-
     	
     })
 }
@@ -190,10 +195,34 @@ function createMarker2(place) {
     })
 
     // create event listener for displaying place details
-    google.maps.event.addListener(marker, 'click', function() {
-    	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    	place.vicinity + '</div>')
-    	infowindow.open(map, this)
+    marker.addListener('click', function() {
+
+    	var info = {
+    		reference: place.reference
+    	}
+
+    	// get place details
+    	service2.getDetails(info, function(details, status) {
+    		// if no website in object, change undefined to text below
+    		if (details.website === undefined) {
+    			details.website = 'No website available'
+    			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    			place.vicinity + '<br>' +
+    			details.formatted_phone_number + '<br>' +
+    			details.website + '</div>')
+    			infowindow.open(map, marker)
+    		}
+
+    		else {
+    			// populate place detail in pop up window			
+				infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    			place.vicinity + '<br>' +
+    			details.formatted_phone_number + '<br>' +
+    			"<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
+    			infowindow.open(map, marker)
+    		}
+    	})
+    	
     })
 }
 
@@ -216,10 +245,34 @@ function createMarker3(place) {
     })
 
     // create event listener for displaying place details
-    google.maps.event.addListener(marker, 'click', function() {
-    	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    	place.vicinity + '</div>')
-    	infowindow.open(map, this)
+    marker.addListener('click', function() {
+
+    	var info = {
+    		reference: place.reference
+    	}
+
+    	// get place details
+    	service3.getDetails(info, function(details, status) {
+    		// if no website in object, change undefined to text below
+    		if (details.website === undefined) {
+    			details.website = 'No website available'
+    			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    			place.vicinity + '<br>' +
+    			details.formatted_phone_number + '<br>' +
+    			details.website + '</div>')
+    			infowindow.open(map, marker)
+    		}
+
+    		else {
+    			// populate place detail in pop up window			
+				infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    			place.vicinity + '<br>' +
+    			details.formatted_phone_number + '<br>' +
+    			"<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
+    			infowindow.open(map, marker)
+    		}
+    	})
+    	
     })
 }
 
@@ -242,10 +295,34 @@ function createMarker4(place) {
     })
 
     // create event listener for displaying place details
-    google.maps.event.addListener(marker, 'click', function() {
-    	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    	place.vicinity + '</div>')
-    	infowindow.open(map, this)
+    marker.addListener('click', function() {
+
+    	var info = {
+    		reference: place.reference
+    	}
+
+    	// get place details
+    	service4.getDetails(info, function(details, status) {
+    		// if no website in object, change undefined to text below
+    		if (details.website === undefined) {
+    			details.website = 'No website available'
+    			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    			place.vicinity + '<br>' +
+    			details.formatted_phone_number + '<br>' +
+    			details.website + '</div>')
+    			infowindow.open(map, marker)
+    		}
+
+    		else {
+    			// populate place detail in pop up window			
+				infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    			place.vicinity + '<br>' +
+    			details.formatted_phone_number + '<br>' +
+    			"<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
+    			infowindow.open(map, marker)
+    		}
+    	})
+    	
     })
 }
 
@@ -268,9 +345,33 @@ function createMarker5(place) {
     })
 
     // create event listener for displaying place details
-    google.maps.event.addListener(marker, 'click', function() {
-    	infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    	place.vicinity + '</div>')
-    	infowindow.open(map, this)
+    marker.addListener('click', function() {
+
+    	var info = {
+    		reference: place.reference
+    	}
+
+    	// get place details
+    	service5.getDetails(info, function(details, status) {
+    		// if no website in object, change undefined to text below
+    		if (details.website === undefined) {
+    			details.website = 'No website available'
+    			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    			place.vicinity + '<br>' +
+    			details.formatted_phone_number + '<br>' +
+    			details.website + '</div>')
+    			infowindow.open(map, marker)
+    		}
+
+    		else {
+    			// populate place detail in pop up window			
+				infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+    			place.vicinity + '<br>' +
+    			details.formatted_phone_number + '<br>' +
+    			"<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
+    			infowindow.open(map, marker)
+    		}
+    	})
+    	
     })
 }
