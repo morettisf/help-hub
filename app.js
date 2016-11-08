@@ -58,7 +58,7 @@ function initMap() {
 
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: city,
-		zoom: 12
+		zoom: 13
 	})
 
 	// add traffic layer
@@ -154,6 +154,7 @@ function createMarker(place) {
     var marker = new google.maps.Marker({
         position: place.geometry.location,
         map: map,
+        animation: google.maps.Animation.DROP,
         icon: "images/police.png"
     })
 

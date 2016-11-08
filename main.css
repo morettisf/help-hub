@@ -2,7 +2,10 @@ html, body {
 	height: 100%;
 	font-family: helvetica;
 	font-size: 1em;
-	background-color: lightblue;
+	background-color: black;
+	background-image: url("images/bg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
 	margin: 0;
 	padding: 0;
 }
@@ -28,7 +31,7 @@ nav {
 nav, .nav-closed, #hamburger {
 	transition-property: margin-left;
 	transition-duration: 1.5s;
-	transition-timing-function: ease-in-out;
+	transition-timing-function: ease-out;
 }
 
 nav h2 {
@@ -42,10 +45,6 @@ nav h3 {
 nav form ul {
 	list-style: none;
 	padding-left: 0;
-}
-
-select, input {
-	font-size: 2em;
 }
 
 #go {
@@ -70,9 +69,31 @@ form {
 	margin-left: 5%;
 }
 
+li {
+	font-size: 1.3em;
+}
+
+li img {
+	vertical-align: middle;
+	padding-right: 10px;
+}
+
+#address {
+	font-size: 2em;
+}
+
+input[type="checkbox"] {
+	zoom: 2.5;
+	vertical-align: middle;
+	margin-top: 5px;
+}
+
 #hamburger {
 	margin-left: 90%;
+	padding-right: 4px;
+	padding-left: 4px;
 	position: absolute;
+	background-color: white;
 	top: 0;
 	z-index: 2;
 }
