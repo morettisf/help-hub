@@ -58,7 +58,7 @@ function initMap() {
 
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: city,
-		zoom: 13
+		zoom: 15
 	})
 
 	// add traffic layer
@@ -137,6 +137,7 @@ function initMap() {
 
 
 
+
 // *** FUNCTION GROUP #3 ***
 
 // POLICE - retrieve results
@@ -144,19 +145,21 @@ function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       var place = results[i]
-      createMarker(results[i])
+      createMarker(results[i], i * 200)
     }
   }
 }
 
 // POLICE - create markers from results
-function createMarker(place) {
-    var marker = new google.maps.Marker({
-        position: place.geometry.location,
-        map: map,
-        animation: google.maps.Animation.DROP,
-        icon: "images/police.png"
-    })
+function createMarker(place, timeout) {
+    var marker
+    setTimeout(function() {
+            marker = new google.maps.Marker({
+            position: place.geometry.location,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: "images/police100.png"
+        })}, timeout)
 
     // create event listener for displaying place details
     marker.addListener('click', function() {
@@ -205,7 +208,7 @@ function createMarker2(place) {
     var marker = new google.maps.Marker({
         position: place.geometry.location,
         map: map,
-        icon: "images/fire.png"
+        icon: "images/fire100.png"
     })
 
     // create event listener for displaying place details
@@ -255,7 +258,7 @@ function createMarker3(place) {
     var marker = new google.maps.Marker({
         position: place.geometry.location,
         map: map,
-        icon: "images/hospital.png"
+        icon: "images/hospital100.png"
     })
 
     // create event listener for displaying place details
@@ -305,7 +308,7 @@ function createMarker4(place) {
     var marker = new google.maps.Marker({
         position: place.geometry.location,
         map: map,
-        icon: "images/mental.png"
+        icon: "images/mental100.png"
     })
 
     // create event listener for displaying place details
@@ -355,7 +358,7 @@ function createMarker5(place) {
     var marker = new google.maps.Marker({
         position: place.geometry.location,
         map: map,
-        icon: "images/vet.png"
+        icon: "images/vet100.png"
     })
 
     // create event listener for displaying place details
