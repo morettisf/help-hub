@@ -223,8 +223,8 @@ function createMarker2(place) {
     		// if no website in object, change undefined to text below
     		if (details.website === undefined) {
     			details.website = 'No website available'
-    			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    			place.vicinity + '<br>' +
+    			infowindow.setContent('<div id="infoPlace">' + place.name + '</div><br>' +
+    			'<div id="infoDetail">' + place.vicinity + '<br>' +
     			details.formatted_phone_number + '<br>' +
     			details.website + '</div>')
     			infowindow.open(map, marker)
@@ -232,8 +232,8 @@ function createMarker2(place) {
 
     		else {
     			// populate place detail in pop up window			
-				infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    			place.vicinity + '<br>' +
+				infowindow.setContent('<div id="infoPlace">' + place.name + '</div>' +
+    			'<div id="infoDetail">' + place.vicinity + '<br>' +
     			details.formatted_phone_number + '<br>' +
     			"<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
     			infowindow.open(map, marker)

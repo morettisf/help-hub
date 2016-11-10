@@ -11,4 +11,5 @@ $('#hamburger').click(function() {
 $('#go').click(function() {
 	$('nav').toggleClass('nav-open')
 	$('#hamburger').toggleClass('hamburger-open')
+	$('header').fadeOut('500')
 })
