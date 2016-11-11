@@ -145,52 +145,54 @@ function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       var place = results[i]
-      createMarker(results[i], i * 200)
+      createMarker(results[i], i * 50)
     }
   }
 }
 
 // POLICE - create markers from results
 function createMarker(place, timeout) {
-    var marker
     setTimeout(function() {
-            marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
             position: place.geometry.location,
             map: map,
             animation: google.maps.Animation.DROP,
             icon: "images/police100.png"
-        })}, timeout)
+        })
 
     // create event listener for displaying place details
     marker.addListener('click', function() {
+        var info = {
+            reference: place.reference
+        }
 
-    	var info = {
-    		reference: place.reference
-    	}
+        // get place details
+        service.getDetails(info, function(details, status) {
+            // if no website in object, change undefined to text below
+            if (details.website === undefined) {
+                details.website = 'No website available'
+                infowindow.setContent('<div id="infoPlace">' + place.name + '</div><br>' +
+                '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
+                '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>' + '<br>' +
+                details.website + '</div>')
+                infowindow.open(map, marker)
+            }
 
-    	// get place details
-    	service.getDetails(info, function(details, status) {
-    		// if no website in object, change undefined to text below
-    		if (details.website === undefined) {
-    			details.website = 'No website available'
-    			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    			place.vicinity + '<br>' +
-    			details.formatted_phone_number + '<br>' +
-    			details.website + '</div>')
-    			infowindow.open(map, marker)
-    		}
+            else {
+                // populate place detail in pop up window           
+                infowindow.setContent('<div id="infoPlace">' + place.name + '</div><br>' +
+                '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
+                '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>' + '<br>' +
+                "<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
+                infowindow.open(map, marker)
+            }
 
-    		else {
-    			// populate place detail in pop up window			
-				infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    			place.vicinity + '<br>' +
-    			details.formatted_phone_number + '<br>' +
-    			"<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
-    			infowindow.open(map, marker)
-    		}
-    	})
-    	
+        })
+
     })
+
+    }, timeout)
+
 }
 
 // FIRE - retrieve results
@@ -205,42 +207,47 @@ function callback2(results, status) {
 
 // FIRE - create markers from results
 function createMarker2(place) {
-    var marker = new google.maps.Marker({
-        position: place.geometry.location,
-        map: map,
-        icon: "images/fire100.png"
-    })
+    setTimeout(function() {
+        var marker = new google.maps.Marker({
+            position: place.geometry.location,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: "images/fire100.png"
+        })
 
     // create event listener for displaying place details
     marker.addListener('click', function() {
+        var info = {
+            reference: place.reference
+        }
 
-    	var info = {
-    		reference: place.reference
-    	}
+        // get place details
+        service.getDetails(info, function(details, status) {
+            // if no website in object, change undefined to text below
+            if (details.website === undefined) {
+                details.website = 'No website available'
+                infowindow.setContent('<div id="infoPlace">' + place.name + '</div><br>' +
+                '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
+                '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>' + '<br>' +
+                details.website + '</div>')
+                infowindow.open(map, marker)
+            }
 
-    	// get place details
-    	service2.getDetails(info, function(details, status) {
-    		// if no website in object, change undefined to text below
-    		if (details.website === undefined) {
-    			details.website = 'No website available'
-    			infowindow.setContent('<div id="infoPlace">' + place.name + '</div><br>' +
-    			'<div id="infoDetail">' + place.vicinity + '<br>' +
-    			details.formatted_phone_number + '<br>' +
-    			details.website + '</div>')
-    			infowindow.open(map, marker)
-    		}
+            else {
+                // populate place detail in pop up window           
+                infowindow.setContent('<div id="infoPlace">' + place.name + '</div><br>' +
+                '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
+                '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>' + '<br>' +
+                "<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
+                infowindow.open(map, marker)
+            }
 
-    		else {
-    			// populate place detail in pop up window			
-				infowindow.setContent('<div id="infoPlace">' + place.name + '</div>' +
-    			'<div id="infoDetail">' + place.vicinity + '<br>' +
-    			details.formatted_phone_number + '<br>' +
-    			"<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
-    			infowindow.open(map, marker)
-    		}
-    	})
-    	
+        })
+
     })
+
+    }, timeout)
+
 }
 
 // HOSPITAL - retrieve results
@@ -255,42 +262,47 @@ function callback3(results, status) {
 
 // HOSPITAL - create markers from results
 function createMarker3(place) {
-    var marker = new google.maps.Marker({
-        position: place.geometry.location,
-        map: map,
-        icon: "images/hospital100.png"
-    })
+    setTimeout(function() {
+        var marker = new google.maps.Marker({
+            position: place.geometry.location,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: "images/hospital100.png"
+        })
 
     // create event listener for displaying place details
     marker.addListener('click', function() {
+        var info = {
+            reference: place.reference
+        }
 
-    	var info = {
-    		reference: place.reference
-    	}
+        // get place details
+        service.getDetails(info, function(details, status) {
+            // if no website in object, change undefined to text below
+            if (details.website === undefined) {
+                details.website = 'No website available'
+                infowindow.setContent('<div id="infoPlace">' + place.name + '</div><br>' +
+                '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
+                '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>' + '<br>' +
+                details.website + '</div>')
+                infowindow.open(map, marker)
+            }
 
-    	// get place details
-    	service3.getDetails(info, function(details, status) {
-    		// if no website in object, change undefined to text below
-    		if (details.website === undefined) {
-    			details.website = 'No website available'
-    			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    			place.vicinity + '<br>' +
-    			details.formatted_phone_number + '<br>' +
-    			details.website + '</div>')
-    			infowindow.open(map, marker)
-    		}
+            else {
+                // populate place detail in pop up window           
+                infowindow.setContent('<div id="infoPlace">' + place.name + '</div><br>' +
+                '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
+                '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>' + '<br>' +
+                "<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
+                infowindow.open(map, marker)
+            }
 
-    		else {
-    			// populate place detail in pop up window			
-				infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    			place.vicinity + '<br>' +
-    			details.formatted_phone_number + '<br>' +
-    			"<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
-    			infowindow.open(map, marker)
-    		}
-    	})
-    	
+        })
+
     })
+
+    }, timeout)
+
 }
 
 // MENTAL CRISIS - retrieve results
@@ -305,42 +317,47 @@ function callback4(results, status) {
 
 // MENTAL CRISIS - create markers from results
 function createMarker4(place) {
-    var marker = new google.maps.Marker({
-        position: place.geometry.location,
-        map: map,
-        icon: "images/mental100.png"
-    })
+    setTimeout(function() {
+        var marker = new google.maps.Marker({
+            position: place.geometry.location,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: "images/mental100.png"
+        })
 
     // create event listener for displaying place details
     marker.addListener('click', function() {
+        var info = {
+            reference: place.reference
+        }
 
-    	var info = {
-    		reference: place.reference
-    	}
+        // get place details
+        service.getDetails(info, function(details, status) {
+            // if no website in object, change undefined to text below
+            if (details.website === undefined) {
+                details.website = 'No website available'
+                infowindow.setContent('<div id="infoPlace">' + place.name + '</div><br>' +
+                '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
+                '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>' + '<br>' +
+                details.website + '</div>')
+                infowindow.open(map, marker)
+            }
 
-    	// get place details
-    	service4.getDetails(info, function(details, status) {
-    		// if no website in object, change undefined to text below
-    		if (details.website === undefined) {
-    			details.website = 'No website available'
-    			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    			place.vicinity + '<br>' +
-    			details.formatted_phone_number + '<br>' +
-    			details.website + '</div>')
-    			infowindow.open(map, marker)
-    		}
+            else {
+                // populate place detail in pop up window           
+                infowindow.setContent('<div id="infoPlace">' + place.name + '</div><br>' +
+                '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
+                '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>' + '<br>' +
+                "<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
+                infowindow.open(map, marker)
+            }
 
-    		else {
-    			// populate place detail in pop up window			
-				infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    			place.vicinity + '<br>' +
-    			details.formatted_phone_number + '<br>' +
-    			"<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
-    			infowindow.open(map, marker)
-    		}
-    	})
-    	
+        })
+
     })
+
+    }, timeout)
+
 }
 
 // VETERINARY - retrieve results
@@ -355,40 +372,45 @@ function callback5(results, status) {
 
 // VETERINARY - create markers from results
 function createMarker5(place) {
-    var marker = new google.maps.Marker({
-        position: place.geometry.location,
-        map: map,
-        icon: "images/vet100.png"
-    })
+    setTimeout(function() {
+        var marker = new google.maps.Marker({
+            position: place.geometry.location,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: "images/vet100.png"
+        })
 
     // create event listener for displaying place details
     marker.addListener('click', function() {
+        var info = {
+            reference: place.reference
+        }
 
-    	var info = {
-    		reference: place.reference
-    	}
+        // get place details
+        service.getDetails(info, function(details, status) {
+            // if no website in object, change undefined to text below
+            if (details.website === undefined) {
+                details.website = 'No website available'
+                infowindow.setContent('<div id="infoPlace">' + place.name + '</div><br>' +
+                '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
+                '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>' + '<br>' +
+                details.website + '</div>')
+                infowindow.open(map, marker)
+            }
 
-    	// get place details
-    	service5.getDetails(info, function(details, status) {
-    		// if no website in object, change undefined to text below
-    		if (details.website === undefined) {
-    			details.website = 'No website available'
-    			infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    			place.vicinity + '<br>' +
-    			details.formatted_phone_number + '<br>' +
-    			details.website + '</div>')
-    			infowindow.open(map, marker)
-    		}
+            else {
+                // populate place detail in pop up window           
+                infowindow.setContent('<div id="infoPlace">' + place.name + '</div><br>' +
+                '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
+                '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>' + '<br>' +
+                "<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
+                infowindow.open(map, marker)
+            }
 
-    		else {
-    			// populate place detail in pop up window			
-				infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    			place.vicinity + '<br>' +
-    			details.formatted_phone_number + '<br>' +
-    			"<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
-    			infowindow.open(map, marker)
-    		}
-    	})
-    	
+        })
+
     })
+
+    }, timeout)
+
 }
