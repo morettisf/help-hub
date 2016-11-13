@@ -9,7 +9,15 @@ $('#hamburger').click(function() {
 })
 
 $('#go').click(function() {
-	$('nav').toggleClass('nav-open')
-	$('#hamburger').toggleClass('hamburger-open')
-	$('header').fadeOut('500')
+	if ((policeChecked === true || fireChecked === true || hospitalChecked === true || mentalChecked === true || vetChecked === true) && address.value) {
+		$('nav').toggleClass('nav-open')
+		$('#hamburger').toggleClass('hamburger-open')
+		$('header').fadeOut('500')
+	}
+	else {
+        $('ul, #go').addClass('shake')
+        setTimeout(function() {
+        	$('ul, #go').removeClass('shake')
+        }, 300)
+    }
 })

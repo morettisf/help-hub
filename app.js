@@ -11,14 +11,17 @@ var vetChecked
 // event listener for capturing address and what's checked
 document.getElementById('go').addEventListener('click', function() {
 
-    var address = document.getElementById('address').value
-    getLatitudeLongitude(address)
+    policeChecked = document.getElementById('police').checked
+    fireChecked = document.getElementById('fire').checked
+    hospitalChecked = document.getElementById('hospital').checked
+    mentalChecked = document.getElementById('mental').checked
+    vetChecked = document.getElementById('veterinary').checked
 
-	policeChecked = document.getElementById('police').checked
-	fireChecked = document.getElementById('fire').checked
-	hospitalChecked = document.getElementById('hospital').checked
-	mentalChecked = document.getElementById('mental').checked
-	vetChecked = document.getElementById('veterinary').checked
+    var address = document.getElementById('address').value
+
+    if (policeChecked === true || fireChecked === true || hospitalChecked === true || mentalChecked === true || vetChecked === true) {
+        getLatitudeLongitude(address)
+    }
 })
 
 // initialize the Geocoder
@@ -58,7 +61,8 @@ function initMap() {
 
 	map = new google.maps.Map(document.getElementById('map'), {
 		center: city,
-		zoom: 15
+		zoom: 14,
+        disableDefaultUI: true,
 	})
 
 	// add traffic layer
@@ -157,7 +161,7 @@ function createMarker(place, timeout) {
             position: place.geometry.location,
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: "images/police100.png"
+            icon: "images/police.png"
         })
 
     // create event listener for displaying place details
@@ -200,19 +204,19 @@ function callback2(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       var place = results[i]
-      createMarker2(results[i])
+      createMarker2(results[i], i * 50)
     }
   }
 }
 
 // FIRE - create markers from results
-function createMarker2(place) {
+function createMarker2(place, timeout) {
     setTimeout(function() {
         var marker = new google.maps.Marker({
             position: place.geometry.location,
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: "images/fire100.png"
+            icon: "images/fire.png"
         })
 
     // create event listener for displaying place details
@@ -222,7 +226,7 @@ function createMarker2(place) {
         }
 
         // get place details
-        service.getDetails(info, function(details, status) {
+        service2.getDetails(info, function(details, status) {
             // if no website in object, change undefined to text below
             if (details.website === undefined) {
                 details.website = 'No website available'
@@ -255,19 +259,19 @@ function callback3(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       var place = results[i]
-      createMarker3(results[i])
+      createMarker3(results[i], i * 50)
     }
   }
 }
 
 // HOSPITAL - create markers from results
-function createMarker3(place) {
+function createMarker3(place, timeout) {
     setTimeout(function() {
         var marker = new google.maps.Marker({
             position: place.geometry.location,
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: "images/hospital100.png"
+            icon: "images/hospital.png"
         })
 
     // create event listener for displaying place details
@@ -277,7 +281,7 @@ function createMarker3(place) {
         }
 
         // get place details
-        service.getDetails(info, function(details, status) {
+        service3.getDetails(info, function(details, status) {
             // if no website in object, change undefined to text below
             if (details.website === undefined) {
                 details.website = 'No website available'
@@ -310,19 +314,19 @@ function callback4(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       var place = results[i]
-      createMarker4(results[i])
+      createMarker4(results[i], i * 50)
     }
   }
 }
 
 // MENTAL CRISIS - create markers from results
-function createMarker4(place) {
+function createMarker4(place, timeout) {
     setTimeout(function() {
         var marker = new google.maps.Marker({
             position: place.geometry.location,
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: "images/mental100.png"
+            icon: "images/mental.png"
         })
 
     // create event listener for displaying place details
@@ -332,7 +336,7 @@ function createMarker4(place) {
         }
 
         // get place details
-        service.getDetails(info, function(details, status) {
+        service4.getDetails(info, function(details, status) {
             // if no website in object, change undefined to text below
             if (details.website === undefined) {
                 details.website = 'No website available'
@@ -365,19 +369,19 @@ function callback5(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       var place = results[i]
-      createMarker5(results[i])
+      createMarker5(results[i], i * 50)
     }
   }
 }
 
 // VETERINARY - create markers from results
-function createMarker5(place) {
+function createMarker5(place, timeout) {
     setTimeout(function() {
         var marker = new google.maps.Marker({
             position: place.geometry.location,
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: "images/vet100.png"
+            icon: "images/vet.png"
         })
 
     // create event listener for displaying place details
@@ -387,7 +391,7 @@ function createMarker5(place) {
         }
 
         // get place details
-        service.getDetails(info, function(details, status) {
+        service5.getDetails(info, function(details, status) {
             // if no website in object, change undefined to text below
             if (details.website === undefined) {
                 details.website = 'No website available'
