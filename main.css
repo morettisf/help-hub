@@ -115,6 +115,7 @@ li img {
 
 #address {
 	font-size: 1em;
+    -webkit-appearance: none;
 }
 
 input[type="checkbox"] {
