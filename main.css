@@ -115,7 +115,11 @@ li img {
 
 #address {
 	font-size: 1em;
-    -webkit-appearance: none;
+}
+
+input[type="text"] {
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
 }
 
 input[type="checkbox"] {
