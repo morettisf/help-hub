@@ -37,13 +37,14 @@ nav, .nav-open, #hamburger {
 
 nav h2 {
 	font-size: 1.5em;
-	margin-top: 30px;
+	margin-top: 9px;
 	color: white;
 }
 
 nav h3 {
 	font-size: 1.25em;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
+	margin-top: 15px;
 	color: white;
 }
 
@@ -57,9 +58,10 @@ nav form ul {
 	font-style: italic;
 	font-size: 2.5em;
 	border: solid black 1px;
-	padding: 10px 35px;
+	padding: 5px 30px;
 	border-radius: 0;
 	background-color: white;
+	margin-top: -10px;
 }
 
 #go:hover:active {
