@@ -65,10 +65,6 @@ function initMap() {
         disableDefaultUI: true,
 	})
 
-	// add traffic layer
-	var trafficLayer = new google.maps.TrafficLayer()
-	trafficLayer.setMap(map)
-
 	// POLICE - set request parameters for markers
 	if (policeChecked === true) {
 		var request = {

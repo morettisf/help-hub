@@ -114,6 +114,23 @@ header h2 {
 	font-weight: lighter;
 	color: white;
 	text-align: center;
+	text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000; 
+}
+
+header h3 {
+	font-size: .75em;
+	font-weight: lighter;
+	color: white;
+	text-align: center;
+	text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000; 
 }
 
 form {
@@ -226,6 +243,10 @@ main {
 		font-size: 2.25em;
 		margin-top: 18px;
 		color: white;
+	}
+
+	header h3 {
+		font-size: 1em;
 	}
 
 	#address {
