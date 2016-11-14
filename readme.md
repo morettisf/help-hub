@@ -1,5 +1,5 @@
 ## Help Hub
-First capstone project at Thinkful
+First capstone project at Thinkful (http://thinkful.com/)
 
 # Live Site
 https://morettisf.github.io/help-hub/
