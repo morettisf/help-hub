@@ -29,12 +29,6 @@ nav {
 	margin-left: 0;
 }
 
-/*nav, .nav-open, #hamburger {
-	transition-property: margin-left;
-	transition-duration: 1.5s;
-	transition-timing-function: ease-out;
-}*/
-
 .animateStart {
 	transition-property: margin-left;
 	transition-duration: 1.5s;
@@ -161,7 +155,7 @@ input[type="checkbox"] {
 
 #hamburger {
 	margin-left: 0%;
-	padding-right: 7px;
+	padding-right: 8px;
 	padding-left: 7px;
 	position: absolute;
 	background-color: #454443;

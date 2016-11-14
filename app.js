@@ -117,9 +117,20 @@ function initMap() {
 
     checkedItems.forEach(function(checked) {
         var data = Object.assign({ keyword: SERVICES[checked].keyword }, searchOptions)
-        image = SERVICES[checked].image
         service = new google.maps.places.PlacesService(map)
         service.nearbySearch(data, callback)
+
+        // retrieve results
+        function callback(results, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    var place = results[i]
+                    image = SERVICES[checked].image
+                    createMarker(place, i * 50, image)
+                }
+            }
+        }
+
     })
 
 	// create infowindows for markers
@@ -129,18 +140,7 @@ function initMap() {
 
 
 
-
 // *** FUNCTION GROUP #3 ***
-
-// retrieve results
-function callback(results, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-            var place = results[i]
-            createMarker(place, i * 50, image)
-        }
-    }
-}
 
 // create markers from results
 function createMarker(place, timeout, image) {
