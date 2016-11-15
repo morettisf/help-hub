@@ -6,7 +6,7 @@ $(document).ready(function() {
 		setTimeout(function() {
 			$('nav, #hamburger').removeClass('animateStart')
 		}, 1500)
-	}, 1000)
+	}, 1500)
 })
 
 $('#hamburger').click(function() {
