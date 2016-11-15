@@ -155,7 +155,7 @@ input[type="checkbox"] {
 
 #hamburger {
 	margin-left: 0%;
-	padding-right: 8px;
+	padding-right: 7px;
 	padding-left: 7px;
 	position: absolute;
 	background-color: #454443;
@@ -225,8 +225,8 @@ main {
 	}
 
 	#hamburger {
-		width: 60px;
-		height: 60px;
+		width: 50px;
+		height: 50px;
 	}
 
 	.hamburger-open {
@@ -235,7 +235,7 @@ main {
 
 	nav h2 {
 		font-size: 2.25em;
-		margin-top: 18px;
+		margin-top: 11px;
 		color: white;
 	}
 
@@ -315,17 +315,12 @@ main {
 @media (min-width: 1200px) {
 
 	nav {
-		width: 33.33%; 
-		margin-left: -33.33%;
-	}
-
-	#hamburger {
-		width: 60px;
-		height: 60px;
+		width: 33%; 
+		margin-left: -33%;
 	}
 
 	.hamburger-open {
-		margin-left: 33.33% !important;
+		margin-left: 33% !important;
 	}
 
 	#pImg, #hImg, #vImg {
