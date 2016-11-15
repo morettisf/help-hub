@@ -1,10 +1,12 @@
 $(document).ready(function() {
-	$('nav, #hamburger').addClass('animateStart')
-	$('nav').toggleClass('nav-open')
-	$('#hamburger').toggleClass('hamburger-open')
 	setTimeout(function() {
-		$('nav, #hamburger').removeClass('animateStart')
-	}, 1500)
+		$('nav, #hamburger').addClass('animateStart')
+		$('nav').toggleClass('nav-open')
+		$('#hamburger').toggleClass('hamburger-open')
+		setTimeout(function() {
+			$('nav, #hamburger').removeClass('animateStart')
+		}, 1500)
+	}, 1000)
 })
 
 $('#hamburger').click(function() {
