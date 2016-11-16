@@ -12,6 +12,7 @@ html, body {
 
 body {
 	margin: 0;
+	min-width: 288px;
 }
 
 nav {
@@ -88,6 +89,8 @@ header {
 header img {
 	margin: 0 auto;
 	display: block;
+	width: 75px;
+	height: 75px;
 }
 
 header h1 {
@@ -136,9 +139,25 @@ li {
 	color: white;
 }
 
-li img {
+#pImg, #hImg, #vImg {
 	vertical-align: middle;
 	margin-right: 8px;
+	width: 35px;
+	height: 35px;
+}
+
+#fImg {
+	vertical-align: middle;
+	margin-right: 8px;
+	width: 40px;
+	height: 26px;
+}
+
+#mImg {
+	vertical-align: middle;
+	margin-right: 8px;
+	width: 35px;
+	height: 39px;
 }
 
 #address {
@@ -170,6 +189,11 @@ input[type="checkbox"] {
 main {
 	height: 100%;
 	overflow: hidden;
+}
+
+main img {
+	width: 40px;
+	height: 40px;
 }
 
 #map {
@@ -217,7 +241,7 @@ main {
 
 }
 
-@media (min-width: 768px) {
+@media (min-width: 520px) {
 
 	nav {
 		width: 50%; 
@@ -232,6 +256,11 @@ main {
 	.hamburger-open {
 		margin-left: 50% !important;
 	}
+
+}
+
+
+@media (min-width: 768px) {
 
 	nav h2 {
 		font-size: 2.25em;
@@ -312,15 +341,15 @@ main {
 
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
 
 	nav {
-		width: 33%; 
-		margin-left: -33%;
+		width: 400px; 
+		margin-left: -400px;
 	}
 
 	.hamburger-open {
-		margin-left: 33% !important;
+		margin-left: 400px !important;
 	}
 
 	#pImg, #hImg, #vImg {

@@ -28,7 +28,7 @@ document.getElementById('go').addEventListener('click', function() {
 function getLatitudeLongitude(address) {   
     var geocoder = new google.maps.Geocoder()
 
-	geocoder.geocode({'address': address}, function (results, status) {
+    geocoder.geocode({'address': address}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             showResult(results[0])
         }
@@ -76,21 +76,20 @@ var SERVICES = {
     }
 }
 
-
 function initMap() {
-	// set map position
-	var city = new google.maps.LatLng(lat, lng)
+    
+    var city = new google.maps.LatLng(lat, lng)
 
-	map = new google.maps.Map(document.getElementById('map'), {
-		center: city,
-		zoom: 13,
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: city,
+        zoom: 13,
         disableDefaultUI: true
-	})
+    })
 
     // default search options
     var searchOptions = {
         location: city,
-        radius: 7500,
+        radius: 10000,
     }
 
     var checkedItems = []
@@ -115,6 +114,7 @@ function initMap() {
         checkedItems.push('veterinary')
     }
 
+    // append default search data object with what's checked
     checkedItems.forEach(function(checked) {
         var data = Object.assign({ keyword: SERVICES[checked].keyword }, searchOptions)
         service = new google.maps.places.PlacesService(map)
@@ -133,8 +133,8 @@ function initMap() {
 
     })
 
-	// create infowindows for markers
-	infowindow = new google.maps.InfoWindow()
+    // create infowindows for markers
+    infowindow = new google.maps.InfoWindow()
 }
 
 
@@ -161,24 +161,32 @@ function createMarker(place, timeout, image) {
             // get place details
             service.getDetails(info, function(details, status) {
 
-                var content = '<div id="infoPlace">' + place.name + '</div><br>' +
-                    '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
-                    '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>' + '<br>'
+                var website
+                var phone
 
-                // if no website in object, change undefined to text below
                 if (details.website === undefined) {
-                    details.website = 'No website available'
-                    infowindow.setContent( content +
-                    details.website + '</div>')
-                    infowindow.open(map, marker)
+                    website = 'No website listed'
                 }
 
                 else {
-                    // populate place detail in pop up window           
-                    infowindow.setContent( content +
-                    "<a href='" + details.website + "'>" + details.website + "</a>" + '</div>')
-                    infowindow.open(map, marker)
+                    website = '<a href="' + details.website + '">' + details.website + '</a>'
                 }
+
+                if (details.formatted_phone_number === undefined) {
+                    phone = 'No phone listed'
+                }
+
+                else {
+                    phone = '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>'
+                }
+
+                var content = '<div id="infoPlace">' + place.name + '</div><br>' +
+                    '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
+                    phone + '<br>' + 
+                    website + '</div>'
+                   
+                infowindow.setContent( content )
+                infowindow.open(map, marker)
 
             })
 

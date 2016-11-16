@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<header>
-			<img src="images/lifepreserver.png" width="75px" height="75px" alt="lifepreserver">
+			<img src="images/lifepreserver.png" alt="lifepreserver">
 			<h1>Help Hub</h1>
 			<h2>Find emergency locations in your area</h2>
 			<h3>Dial for medical emergencies</h3>
@@ -18,20 +18,20 @@
 		<nav id="menu">
 			<form>
 				<h2>Emergency Locations</h2>
+				<label for="address"><input type="text" id="address" name="address" size="25" placeholder="Address, City, State, Zip"></label>
+				<h3>Select Services</h3>
 				<ul>
-					<li><label for="address"><input type="text" id="address" name="address" size="25" placeholder="Address, City, State, Zip"></label></li>
-					<h3>Select Services</h3>
-					<li><label for="police checkbox"><input type="checkbox" id="police" name="police" value="Police"><img src="images/police100.png" id="pImg" width="35px" height="35px" alt="police icon">Police Department</input></label></li>
-					<li><label for="police checkbox"><input type="checkbox" id="fire" name="fire" value="Fire"><img src="images/fire100.png" id="fImg" width="40px" height="26px" alt="fire icon">Fire Department</input></label></li>
-					<li><label for="police checkbox"><input type="checkbox" id="hospital" name="hospital" value="Hospital"><img src="images/hospital100.png" id="hImg" width="35px" height="35px" alt="hospital icon">Hospital</input></label></li>
-					<li><label for="police checkbox"><input type="checkbox" id="mental" name="mental" value="mental"><img src="images/mental100.png" id="mImg" width="35px" height="39px" alt="mental crisis icon">Mental Crisis</input></label></li>
-					<li><label for="police checkbox"><input type="checkbox" id="veterinary" name="veterinary" value="veterinary"><img src="images/vet100.png" id="vImg" width="35px" height="35px" alt="veterinary icon">Veterinary</input></label></li>
+					<li><label for="police"><input type="checkbox" id="police" name="police" value="Police"><img src="images/police100.png" id="pImg" alt="police icon">Police Department</label></li>
+					<li><label for="fire"><input type="checkbox" id="fire" name="fire" value="Fire"><img src="images/fire100.png" id="fImg" alt="fire icon">Fire Department</label></li>
+					<li><label for="hospital"><input type="checkbox" id="hospital" name="hospital" value="Hospital"><img src="images/hospital100.png" id="hImg" alt="hospital icon">Hospital</label></li>
+					<li><label for="mental"><input type="checkbox" id="mental" name="mental" value="mental"><img src="images/mental100.png" id="mImg" alt="mental crisis icon">Mental Crisis</label></li>
+					<li><label for="veterinary"><input type="checkbox" id="veterinary" name="veterinary" value="veterinary"><img src="images/vet100.png" id="vImg" alt="veterinary icon">Veterinary</label></li>
 				</ul>
 				<label for="submit search"><input type="button" value="Go!" id="go"></label>
 			</form>
 		</nav>
 		<main>
-			<img src="images/hamburger.svg" id="hamburger" width="40px" height="40px" alt="expanding menu button">
+			<img src="images/hamburger.svg" id="hamburger" alt="expanding menu button">
 			<div id="map"></div>
 		</main>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
