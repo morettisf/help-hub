@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Use Help Hub to find emergency service locations in your area. Be prepared.">
+		<link href="build/help-hub.1.0.0.css" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Droid+Sans|Russo+One" rel="stylesheet">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+		<title>Help Hub - Find Emergency Locations In Your Area</title>
+	</head>
+	<body>
+		<header>
+			<img src="images/lifepreserver.png" alt="lifepreserver">
+			<h1>Help Hub</h1>
+			<h2>Find emergency locations in your area</h2>
+			<h3>Dial 911 for medical emergencies</h3>
+		</header>
+		<nav id="menu">
+			<form>
+				<h2>Emergency Locations</h2>
+				<label for="address"><input type="text" id="address" name="address" size="25" placeholder="Address, City, State, Zip"></label>
+				<h3>Select Services</h3>
+				<ul>
+					<li><label for="police"><input type="checkbox" id="police" name="police" value="Police"><img src="images/police100.png" id="pImg" alt="police icon">Police Department</label></li>
+					<li><label for="fire"><input type="checkbox" id="fire" name="fire" value="Fire"><img src="images/fire100.png" id="fImg" alt="fire icon">Fire Department</label></li>
+					<li><label for="hospital"><input type="checkbox" id="hospital" name="hospital" value="Hospital"><img src="images/hospital100.png" id="hImg" alt="hospital icon">Hospital</label></li>
+					<li><label for="mental"><input type="checkbox" id="mental" name="mental" value="mental"><img src="images/mental100.png" id="mImg" alt="mental crisis icon">Mental Crisis</label></li>
+					<li><label for="veterinary"><input type="checkbox" id="veterinary" name="veterinary" value="veterinary"><img src="images/vet100.png" id="vImg" alt="veterinary icon">Veterinary</label></li>
+				</ul>
+				<label for="go"><input type="button" value="Go!" id="go"></label>
+			</form>
+		</nav>
+		<main>
+			<img src="images/hamburger.svg" id="hamburger" alt="expanding menu button">
+			<div id="map"></div>
+		</main>
+		<script src="node_modules/jquery/dist/jquery.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/nav.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrj6qlelZdeWQMNSuuwEEa2nE3V1sVma4&libraries=places" async defer></script>
+	</body>
+</html>

@@ -30,13 +30,7 @@ nav {
 	margin-left: 0;
 }
 
-.animateStart {
-	transition-property: margin-left;
-	transition-duration: 1.5s;
-	transition-timing-function: ease-out;
-}
-
-.animateNav {
+.animateStart, .animateNav {
 	transition-property: margin-left;
 	transition-duration: 1.5s;
 	transition-timing-function: ease-out;
@@ -180,6 +174,10 @@ input[type="checkbox"] {
 	background-color: #454443;
 	top: 0;
 	z-index: 2;
+}
+
+#hamburger:hover, #go:hover {
+	cursor: pointer;
 }
 
 .hamburger-open {
