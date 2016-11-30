@@ -113,7 +113,8 @@ var appExport = function() {
         }
 
         // append default search data object with what's checked
-        checkedItems.forEach(function(checked) {
+//        checkedItems.forEach(function(checked) {
+        checkedItems.forEach((checked) => {  // that's some ES6 Arrow Function magic, baby!
             var data = Object.assign({ keyword: SERVICES[checked].keyword }, searchOptions)
             service = new google.maps.places.PlacesService(map)
             service.nearbySearch(data, callback)
