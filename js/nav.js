@@ -32,6 +32,13 @@ module.exports = function(opts) {
 	})
 
 	$('#go').click(function() {
+
+    	policeChecked = $('#police').prop('checked')
+    	fireChecked = $('#fire').prop('checked')
+    	hospitalChecked = $('#hospital').prop('checked')
+    	mentalChecked = $('#mental').prop('checked')
+    	vetChecked = $('#veterinary').prop('checked')
+
 		if ((policeChecked === true || fireChecked === true || hospitalChecked === true || mentalChecked === true || vetChecked === true) && address.value) {
 			$('nav, #hamburger').addClass('animateNav')
 			$('nav').toggleClass('nav-open')

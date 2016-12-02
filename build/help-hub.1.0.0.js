@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict'
+	'use strict';
 	
 	var servicesSelected = {
 	
@@ -54,74 +54,71 @@
 		mentalChecked: false,
 		vetChecked: false
 	
-	}
+	};
 	
-	__webpack_require__(1)(servicesSelected)
-	__webpack_require__(2)(servicesSelected)
+	__webpack_require__(1)(servicesSelected);
+	__webpack_require__(2)(servicesSelected);
 
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
 
-	'use strict'
+	'use strict';
 	
-	module.exports = function(opts) {
+	module.exports = function (opts) {
 	
 	    // importing the opts object variables from index.js
-	    var policeChecked = opts.policeChecked
-	    var fireChecked = opts.fireChecked
-	    var hospitalChecked = opts.hospitalChecked
-	    var mentalChecked = opts.mentalChecked
-	    var vetChecked = opts.vetChecked
+	    var policeChecked = opts.policeChecked;
+	    var fireChecked = opts.fireChecked;
+	    var hospitalChecked = opts.hospitalChecked;
+	    var mentalChecked = opts.mentalChecked;
+	    var vetChecked = opts.vetChecked;
 	
 	    // *** FUNCTION GROUP #1 ***
 	
-	    var lat
-	    var lng
+	    var lat;
+	    var lng;
 	
 	    // event listener for capturing address and what's checked
-	    document.getElementById('go').addEventListener('click', function() {
+	    document.getElementById('go').addEventListener('click', function () {
 	
-	        policeChecked = document.getElementById('police').checked
-	        fireChecked = document.getElementById('fire').checked
-	        hospitalChecked = document.getElementById('hospital').checked
-	        mentalChecked = document.getElementById('mental').checked
-	        vetChecked = document.getElementById('veterinary').checked
+	        policeChecked = document.getElementById('police').checked;
+	        fireChecked = document.getElementById('fire').checked;
+	        hospitalChecked = document.getElementById('hospital').checked;
+	        mentalChecked = document.getElementById('mental').checked;
+	        vetChecked = document.getElementById('veterinary').checked;
 	
-	        var address = document.getElementById('address').value
+	        var address = document.getElementById('address').value;
 	
 	        if (policeChecked === true || fireChecked === true || hospitalChecked === true || mentalChecked === true || vetChecked === true) {
-	            getLatitudeLongitude(address)
+	            getLatitudeLongitude(address);
 	        }
-	    })
+	    });
 	
 	    // initialize the Geocoder
-	    function getLatitudeLongitude(address) {   
-	        var geocoder = new google.maps.Geocoder()
+	    function getLatitudeLongitude(address) {
+	        var geocoder = new google.maps.Geocoder();
 	
-	        geocoder.geocode({'address': address}, function (results, status) {
+	        geocoder.geocode({ 'address': address }, function (results, status) {
 	            if (status == google.maps.GeocoderStatus.OK) {
-	                showResult(results[0])
+	                showResult(results[0]);
 	            }
-	        })
+	        });
 	    }
 	
 	    // capture the lattitude & logitude from res object
 	    function showResult(res) {
-	        lat = (res.geometry.location.lat())
-	        lng = (res.geometry.location.lng())
-	        initMap()
+	        lat = res.geometry.location.lat();
+	        lng = res.geometry.location.lng();
+	        initMap();
 	    }
-	
-	
-	
 	
 	    // *** FUNCTION GROUP #2 ***
 	
-	    var map
-	    var service
-	    var infowindow
-	    var image
+	    var map;
+	    var service;
+	    var infowindow;
+	    var image;
 	
 	    // create object values for each option
 	    var SERVICES = {
@@ -145,187 +142,178 @@
 	            keyword: "veterinary",
 	            image: "images/vet.png"
 	        }
-	    }
+	    };
 	
 	    function initMap() {
-	        
-	        var city = new google.maps.LatLng(lat, lng)
+	
+	        var city = new google.maps.LatLng(lat, lng);
 	
 	        map = new google.maps.Map(document.getElementById('map'), {
 	            center: city,
 	            zoom: 13,
 	            disableDefaultUI: true,
-	            zoomControl: true,
-	        })
+	            zoomControl: true
+	        });
 	
 	        // default search options
 	        var searchOptions = {
 	            location: city,
-	            radius: 10000,
-	        }
+	            radius: 10000
+	        };
 	
-	        var checkedItems = []
+	        var checkedItems = [];
 	
 	        if (policeChecked === true) {
-	            checkedItems.push('police')
+	            checkedItems.push('police');
 	        }
 	
 	        if (fireChecked === true) {
-	            checkedItems.push('fire')
+	            checkedItems.push('fire');
 	        }
 	
 	        if (hospitalChecked === true) {
-	            checkedItems.push('hospital')
+	            checkedItems.push('hospital');
 	        }
 	
 	        if (mentalChecked === true) {
-	            checkedItems.push('mental')
+	            checkedItems.push('mental');
 	        }
 	
 	        if (vetChecked === true) {
-	            checkedItems.push('veterinary')
+	            checkedItems.push('veterinary');
 	        }
 	
 	        // append default search data object with what's checked
-	//        checkedItems.forEach(function(checked) {
-	        checkedItems.forEach((checked) => {  // that's some ES6 Arrow Function magic, baby!
-	            var data = Object.assign({ keyword: SERVICES[checked].keyword }, searchOptions)
-	            service = new google.maps.places.PlacesService(map)
-	            service.nearbySearch(data, callback)
+	        //        checkedItems.forEach(function(checked) {
+	        checkedItems.forEach(function (checked) {
+	            // that's some ES6 Arrow Function magic, baby!
+	            var data = Object.assign({ keyword: SERVICES[checked].keyword }, searchOptions);
+	            service = new google.maps.places.PlacesService(map);
+	            service.nearbySearch(data, callback);
 	
 	            // retrieve results
 	            function callback(results, status) {
 	                if (status == google.maps.places.PlacesServiceStatus.OK) {
 	                    for (var i = 0; i < results.length; i++) {
-	                        var place = results[i]
-	                        image = SERVICES[checked].image
-	                        createMarker(place, i * 50, image)
+	                        var place = results[i];
+	                        image = SERVICES[checked].image;
+	                        createMarker(place, i * 50, image);
 	                    }
 	                }
 	            }
-	
-	        })
+	        });
 	
 	        // create infowindows for markers
-	        infowindow = new google.maps.InfoWindow()
+	        infowindow = new google.maps.InfoWindow();
 	    }
-	
-	
-	
 	
 	    // *** FUNCTION GROUP #3 ***
 	
 	    // create markers from results
 	    function createMarker(place, timeout, image) {
-	        setTimeout(function() {
+	        setTimeout(function () {
 	            var marker = new google.maps.Marker({
 	                position: place.geometry.location,
 	                map: map,
 	                animation: google.maps.Animation.DROP,
 	                icon: image
-	            })
+	            });
 	
 	            // create event listener for displaying place details
-	            marker.addListener('click', function() {
+	            marker.addListener('click', function () {
 	                var info = {
 	                    reference: place.reference
-	                }
+	                };
 	
 	                // get place details
-	                service.getDetails(info, function(details, status) {
+	                service.getDetails(info, function (details, status) {
 	
-	                    var website
-	                    var phone
+	                    var website;
+	                    var phone;
 	
 	                    if (details.website === undefined) {
-	                        website = 'No website listed'
-	                    }
-	
-	                    else {
-	                        website = '<a href="' + details.website + '">' + details.website + '</a>'
+	                        website = 'No website listed';
+	                    } else {
+	                        website = '<a href="' + details.website + '">' + details.website + '</a>';
 	                    }
 	
 	                    if (details.formatted_phone_number === undefined) {
-	                        phone = 'No phone listed'
+	                        phone = 'No phone listed';
+	                    } else {
+	                        phone = '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>';
 	                    }
 	
-	                    else {
-	                        phone = '<a href="tel:' + details.formatted_phone_number + '">' + details.formatted_phone_number + '</a>'
-	                    }
+	                    var content = '<div id="infoPlace">' + place.name + '</div><br>' + '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>' + '<br>' + phone + '<br>' + website + '</div>';
 	
-	                    var content = '<div id="infoPlace">' + place.name + '</div><br>' +
-	                        '<div id="infoDetail">' + '<a href="http://maps.google.com/maps?q=' + place.vicinity + '">' + place.vicinity + '</a>'+ '<br>' +
-	                        phone + '<br>' + 
-	                        website + '</div>'
-	                       
-	                    infowindow.setContent( content )
-	                    infowindow.open(map, marker)
-	
-	                })
-	
-	            })
-	
-	        }, timeout)
+	                    infowindow.setContent(content);
+	                    infowindow.open(map, marker);
+	                });
+	            });
+	        }, timeout);
 	    }
-	
-	} 
+	};
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict'
+	'use strict';
 	
-	module.exports = function(opts) {
+	module.exports = function (opts) {
 	
 		// importing the opts object variables from index.js
-	    var policeChecked = opts.policeChecked
-	    var fireChecked = opts.fireChecked
-	    var hospitalChecked = opts.hospitalChecked
-	    var mentalChecked = opts.mentalChecked
-	    var vetChecked = opts.vetChecked
+		var policeChecked = opts.policeChecked;
+		var fireChecked = opts.fireChecked;
+		var hospitalChecked = opts.hospitalChecked;
+		var mentalChecked = opts.mentalChecked;
+		var vetChecked = opts.vetChecked;
 	
-		var $ = __webpack_require__(3)
+		var $ = __webpack_require__(3);
 	
-		$(document).ready(function() {
-			setTimeout(function() {
-				$('nav, #hamburger').addClass('animateStart')
-				$('nav').toggleClass('nav-open')
-				$('#hamburger').toggleClass('hamburger-open')
-				setTimeout(function() {
-					$('nav, #hamburger').removeClass('animateStart')
-				}, 1500)
-			}, 1500)
-		})
+		$(document).ready(function () {
+			setTimeout(function () {
+				$('nav, #hamburger').addClass('animateStart');
+				$('nav').toggleClass('nav-open');
+				$('#hamburger').toggleClass('hamburger-open');
+				setTimeout(function () {
+					$('nav, #hamburger').removeClass('animateStart');
+				}, 1500);
+			}, 1500);
+		});
 	
-		$('#hamburger').click(function() {
-			$('nav, #hamburger').addClass('animateNav')
-			$('nav').toggleClass('nav-open')
-			$('#hamburger').toggleClass('hamburger-open')
-			setTimeout(function() {
-				$('nav, #hamburger').removeClass('animateNav')
-			}, 1500)
-		})
+		$('#hamburger').click(function () {
+			$('nav, #hamburger').addClass('animateNav');
+			$('nav').toggleClass('nav-open');
+			$('#hamburger').toggleClass('hamburger-open');
+			setTimeout(function () {
+				$('nav, #hamburger').removeClass('animateNav');
+			}, 1500);
+		});
 	
-		$('#go').click(function() {
+		$('#go').click(function () {
+	
+			policeChecked = $('#police').prop('checked');
+			fireChecked = $('#fire').prop('checked');
+			hospitalChecked = $('#hospital').prop('checked');
+			mentalChecked = $('#mental').prop('checked');
+			vetChecked = $('#veterinary').prop('checked');
+	
 			if ((policeChecked === true || fireChecked === true || hospitalChecked === true || mentalChecked === true || vetChecked === true) && address.value) {
-				$('nav, #hamburger').addClass('animateNav')
-				$('nav').toggleClass('nav-open')
-				$('#hamburger').toggleClass('hamburger-open')
-				setTimeout(function() {
-					$('nav, #hamburger').removeClass('animateNav')
-				}, 1500)
-				$('header').fadeOut('500')
+				$('nav, #hamburger').addClass('animateNav');
+				$('nav').toggleClass('nav-open');
+				$('#hamburger').toggleClass('hamburger-open');
+				setTimeout(function () {
+					$('nav, #hamburger').removeClass('animateNav');
+				}, 1500);
+				$('header').fadeOut('500');
+			} else {
+				$('ul, #go').addClass('shake');
+				setTimeout(function () {
+					$('ul, #go').removeClass('shake');
+				}, 300);
 			}
-			else {
-		        $('ul, #go').addClass('shake')
-		        setTimeout(function() {
-		        	$('ul, #go').removeClass('shake')
-		        }, 300)
-		    }
-		})
-	
-	} 
+		});
+	};
 
 /***/ },
 /* 3 */
