@@ -44,25 +44,35 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var policeChecked
-	var fireChecked
-	var hospitalChecked
-	var mentalChecked
-	var vetChecked
+	'use strict'
 	
-	var appExport = __webpack_require__(1)
-	var navExport = __webpack_require__(2)
+	var servicesSelected = {
 	
-	appExport()
-	navExport()
+		policeChecked: false,
+		fireChecked: false,
+		hospitalChecked: false,
+		mentalChecked: false,
+		vetChecked: false
 	
-
+	}
+	
+	__webpack_require__(1)(servicesSelected)
+	__webpack_require__(2)(servicesSelected)
 
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
 
-	var appExport = function() {
+	'use strict'
+	
+	module.exports = function(opts) {
+	
+	    // importing the opts object variables from index.js
+	    var policeChecked = opts.policeChecked
+	    var fireChecked = opts.fireChecked
+	    var hospitalChecked = opts.hospitalChecked
+	    var mentalChecked = opts.mentalChecked
+	    var vetChecked = opts.vetChecked
 	
 	    // *** FUNCTION GROUP #1 ***
 	
@@ -259,14 +269,21 @@
 	    }
 	
 	} 
-	
-	module.exports = appExport
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var navExport = function() {
+	'use strict'
+	
+	module.exports = function(opts) {
+	
+		// importing the opts object variables from index.js
+	    var policeChecked = opts.policeChecked
+	    var fireChecked = opts.fireChecked
+	    var hospitalChecked = opts.hospitalChecked
+	    var mentalChecked = opts.mentalChecked
+	    var vetChecked = opts.vetChecked
 	
 		var $ = __webpack_require__(3)
 	
@@ -309,8 +326,6 @@
 		})
 	
 	} 
-	
-	module.exports = navExport
 
 /***/ },
 /* 3 */

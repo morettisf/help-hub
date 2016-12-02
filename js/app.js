@@ -1,4 +1,13 @@
-var appExport = function() {
+'use strict'
+
+module.exports = function(opts) {
+
+    // importing the opts object variables from index.js
+    var policeChecked = opts.policeChecked
+    var fireChecked = opts.fireChecked
+    var hospitalChecked = opts.hospitalChecked
+    var mentalChecked = opts.mentalChecked
+    var vetChecked = opts.vetChecked
 
     // *** FUNCTION GROUP #1 ***
 
@@ -195,5 +204,3 @@ var appExport = function() {
     }
 
 } 
-
-module.exports = appExport

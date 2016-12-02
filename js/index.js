@@ -1,12 +1,14 @@
-var policeChecked
-var fireChecked
-var hospitalChecked
-var mentalChecked
-var vetChecked
+'use strict'
 
-var appExport = require('./app')
-var navExport = require('./nav')
+var servicesSelected = {
 
-appExport()
-navExport()
+	policeChecked: false,
+	fireChecked: false,
+	hospitalChecked: false,
+	mentalChecked: false,
+	vetChecked: false
 
+}
+
+require('./app')(servicesSelected)
+require('./nav')(servicesSelected)
