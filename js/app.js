@@ -88,7 +88,7 @@ module.exports = function(opts) {
 
         map = new google.maps.Map(document.getElementById('map'), {
             center: city,
-            zoom: 13,
+            zoom: 14,
             disableDefaultUI: true,
             zoomControl: true,
         })
