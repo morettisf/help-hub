@@ -4,6 +4,7 @@
   "description": "First capstone project at Thinkful (http://thinkful.com/)",
   "main": "js/index.js",
   "dependencies": {
+    "axios": "^0.16.0",
     "jquery": "^3.1.1",
     "less": "^2.7.1"
   },

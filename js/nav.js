@@ -3,11 +3,11 @@
 module.exports = function(opts) {
 
 	// importing the opts object variables from index.js
-    var policeChecked = opts.policeChecked
-    var fireChecked = opts.fireChecked
-    var hospitalChecked = opts.hospitalChecked
-    var mentalChecked = opts.mentalChecked
-    var vetChecked = opts.vetChecked
+  var policeChecked = opts.policeChecked
+  var fireChecked = opts.fireChecked
+  var hospitalChecked = opts.hospitalChecked
+  var mentalChecked = opts.mentalChecked
+  var vetChecked = opts.vetChecked
 
 	var $ = require('jquery')
 

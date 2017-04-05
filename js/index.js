@@ -12,3 +12,4 @@ var servicesSelected = {
 
 require('./app')(servicesSelected)
 require('./nav')(servicesSelected)
+require('./location')()
