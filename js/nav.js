@@ -11,7 +11,13 @@ module.exports = function(opts) {
 
 	var $ = require('jquery')
 
-	$(document).ready(function() {
+	$('#intro-btn').on('click', function() {
+
+    $('#intro').css('opacity', '1')
+    $('#intro').css('visibility', 'visible')
+    $('#intro').addClass('fade-out')
+    $('#intro').removeClass('fade-in')
+
 		setTimeout(function() {
 			$('nav, #hamburger').addClass('animateStart')
 			$('nav').toggleClass('nav-open')
