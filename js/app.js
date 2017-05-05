@@ -25,7 +25,7 @@ module.exports = function(opts) {
 
         var address = document.getElementById('address').value
 
-        if (policeChecked === true || fireChecked === true || hospitalChecked === true || mentalChecked === true || vetChecked === true) {
+        if ((policeChecked === true || fireChecked === true || hospitalChecked === true || mentalChecked === true || vetChecked === true) && address) {
             getLatitudeLongitude(address)
         }
     })

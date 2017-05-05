@@ -91,7 +91,7 @@
 	
 	        var address = document.getElementById('address').value;
 	
-	        if (policeChecked === true || fireChecked === true || hospitalChecked === true || mentalChecked === true || vetChecked === true) {
+	        if ((policeChecked === true || fireChecked === true || hospitalChecked === true || mentalChecked === true || vetChecked === true) && address) {
 	            getLatitudeLongitude(address);
 	        }
 	    });
@@ -305,7 +305,7 @@
 			mentalChecked = $('#mental').prop('checked');
 			vetChecked = $('#veterinary').prop('checked');
 	
-			if ((policeChecked === true || fireChecked === true || hospitalChecked === true || mentalChecked === true || vetChecked === true) && address.value) {
+			if (policeChecked === true || fireChecked === true || hospitalChecked === true || mentalChecked === true || vetChecked === true && address.value) {
 				$('nav, #hamburger').addClass('animateNav');
 				$('nav').toggleClass('nav-open');
 				$('#hamburger').toggleClass('hamburger-open');

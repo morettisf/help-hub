@@ -73,6 +73,7 @@ body {
 	margin-right: auto;
 	width: 160px;
 	margin-top: 20px;
+	cursor: pointer;
 }
 
 #intro-btn:hover:active {
@@ -135,6 +136,7 @@ nav form ul {
     -webkit-border-radius: 0;
 	background-color: white;
 	margin-top: -10px;
+	cursor: pointer;
 }
 
 #go:hover:active {
