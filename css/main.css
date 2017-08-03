@@ -445,4 +445,8 @@ main img {
 		height: 56px;
 	}
 
+	input[type="checkbox"] {
+		zoom: unset;
+	}
+
 }
