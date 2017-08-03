@@ -447,6 +447,7 @@ main img {
 
 	input[type="checkbox"] {
 		zoom: unset;
+		margin-right: 15px;
 	}
 
 }
