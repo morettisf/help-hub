@@ -185,24 +185,42 @@
 	        }
 	
 	        // append default search data object with what's checked
-	        //        checkedItems.forEach(function(checked) {
-	        checkedItems.forEach(function (checked) {
-	            // that's some ES6 Arrow Function magic, baby!
-	            var data = Object.assign({ keyword: SERVICES[checked].keyword }, searchOptions);
-	            service = new google.maps.places.PlacesService(map);
-	            service.nearbySearch(data, callback);
+	
+	        for (var i = 0; i < checkedItems.length; i++) {
 	
 	            // retrieve results
-	            function callback(results, status) {
+	            var callback = function callback(results, status) {
 	                if (status == google.maps.places.PlacesServiceStatus.OK) {
 	                    for (var i = 0; i < results.length; i++) {
 	                        var place = results[i];
-	                        image = SERVICES[checked].image;
+	                        image = SERVICES[checkedItems[i]].image;
 	                        createMarker(place, i * 50, image);
 	                    }
 	                }
-	            }
-	        });
+	            };
+	
+	            var data = Object.assign({ keyword: SERVICES[checkedItems[i]].keyword }, searchOptions);
+	            service = new google.maps.places.PlacesService(map);
+	            service.nearbySearch(data, callback);
+	        }
+	
+	        // checkedItems.forEach((checked) => {
+	        //     var data = Object.assign({ keyword: SERVICES[checked].keyword }, searchOptions)
+	        //     service = new google.maps.places.PlacesService(map)
+	        //     service.nearbySearch(data, callback)
+	
+	        //     // retrieve results
+	        //     function callback(results, status) {
+	        //         if (status == google.maps.places.PlacesServiceStatus.OK) {
+	        //             for (var i = 0; i < results.length; i++) {
+	        //                 var place = results[i]
+	        //                 image = SERVICES[checked].image
+	        //                 createMarker(place, i * 50, image)
+	        //             }
+	        //         }
+	        //     }
+	
+	        // })
 	
 	        // create infowindows for markers
 	        infowindow = new google.maps.InfoWindow();
