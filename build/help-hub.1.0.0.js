@@ -191,10 +191,10 @@
 	            // retrieve results
 	            var callback = function callback(results, status) {
 	                if (status == google.maps.places.PlacesServiceStatus.OK) {
-	                    for (var i = 0; i < results.length; i++) {
+	                    for (var j = 0; j < results.length; j++) {
 	                        var place = results[i];
 	                        image = SERVICES[checkedItems[i]].image;
-	                        createMarker(place, i * 50, image);
+	                        createMarker(place, j * 50, image);
 	                    }
 	                }
 	            };
