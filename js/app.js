@@ -122,43 +122,23 @@ module.exports = function(opts) {
         }
 
         // append default search data object with what's checked
-
-        for (var i = 0; i < checkedItems.length; i++) {
-            var data = Object.assign({ keyword: SERVICES[checkedItems[i]].keyword }, searchOptions)
+        checkedItems.forEach((checked) => {
+            var data = Object.assign({ keyword: SERVICES[checked].keyword }, searchOptions)
             service = new google.maps.places.PlacesService(map)
             service.nearbySearch(data, callback)
 
             // retrieve results
             function callback(results, status) {
                 if (status == google.maps.places.PlacesServiceStatus.OK) {
-                    for (var j = 0; j < results.length; j++) {
-                        var place = results[j]
-                        image = SERVICES[checkedItems[i]].image
-                        createMarker(place, j * 50, image)
+                    for (var i = 0; i < results.length; i++) {
+                        var place = results[i]
+                        image = SERVICES[checked].image
+                        createMarker(place, i * 50, image)
                     }
                 }
             }
-        }
 
-
-
-        // checkedItems.forEach((checked) => {
-        //     var data = Object.assign({ keyword: SERVICES[checked].keyword }, searchOptions)
-        //     service = new google.maps.places.PlacesService(map)
-        //     service.nearbySearch(data, callback)
-
-        //     // retrieve results
-        //     function callback(results, status) {
-        //         if (status == google.maps.places.PlacesServiceStatus.OK) {
-        //             for (var i = 0; i < results.length; i++) {
-        //                 var place = results[i]
-        //                 image = SERVICES[checked].image
-        //                 createMarker(place, i * 50, image)
-        //             }
-        //         }
-        //     }
-
-        // })
+        })
 
         // create infowindows for markers
         infowindow = new google.maps.InfoWindow()
