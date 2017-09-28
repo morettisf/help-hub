@@ -1,5 +1,5 @@
 # Help Hub
-First capstone project at Thinkful (http://thinkful.com/)
+Frontend JavaScript App for Emergency Preparedness
 
 ## Live Site
 https://morettisf.github.io/help-hub/
